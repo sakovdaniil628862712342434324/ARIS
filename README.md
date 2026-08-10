@@ -20,23 +20,30 @@ Source: [ARIS Web App](https://www.figma.com/design/uM5XlBXQ5JOll82GBJlmul/ARIS-
 
 **Dashboard blocks:** KPI row (Active Sensors / System Health / Energy Savings) · Sensor Network table + donut · 24h trends · isometric zone map · 6h demand forecast · alerts feed · pending approvals (Approve / Dismiss).
 
-## Codebase (`aris-web-app/`)
-Expo ~57 + React Native 0.86 + TypeScript screens · NativeWind tokens · StyleSheet UI
+## Codebase (`~/Downloads/aris-web-app/`)
+Expo ~57 + React Native (web) UI · **Flask + SQLite + PyTorch** backend on GBTAC historian data.
 
 ```bash
+# Terminal 1 — API (real data)
+cd ~/Downloads/aris-web-app/backend
+pip3 install -r requirements.txt
+# already built: aris.db + ml/artifacts/*.pt
+python3 app.py                    # http://127.0.0.1:5050
+
+# Terminal 2 — UI
+cd ~/Downloads/aris-web-app
 npm install
 npm run web
 ```
 
-Flow: **Sign In → Dashboard** (demo auth). Forgot Password / Request Access are wired. Other nav destinations are stubbed to Dashboard until built.
+Rebuild DB / retrain (optional):
+```bash
+python3 etl/build_db.py
+python3 ml/train_forecast.py      # MLP from scratch, no pretrained weights
+python3 ml/train_anomaly.py       # autoencoder from scratch
+```
 
-## Docs in this folder
-| File | Role |
-|------|------|
-| `Capstone Project - Phase 2.docx` | Requirements, architecture layers, use cases |
-| `Project Phase 3 - Final Design and Project Timeline.docx` | Sequence/activity diagrams, prototype, Gantt |
-| `D2L/` | Weekly progress + phase templates |
-| `Figma/`, `aris-demo-*.mp4` | Design exports / demo assets |
+All tabs (Dashboard, Sensors, Analytics, DSM, Reports, Settings, Activity) load from the API. DSM Approve/Dismiss logs to SQLite only (**historian mode** — no BACnet write-back per client meeting).
 
 ## Status
-Prototype UI matching Figma Sign In + Dashboard Overview. Backend, BACnet, ETL, and ML are design-phase — not in this Expo app yet.
+Working demo on **GBTAC Building Data** (2018–2025): ~686k hourly points, energy + zone temps, PyTorch forecast R²≈0.92, anomaly AE, DSM heuristics, emissions reports.
