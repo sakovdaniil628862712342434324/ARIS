@@ -1,0 +1,25 @@
+hour,period,price_cents_kwh,note
+0,Off-Peak,5.8,Alberta-style TOU snapshot (not live AESO pool)
+1,Off-Peak,5.5,night valley
+2,Off-Peak,5.2,night valley
+3,Off-Peak,5.0,night valley
+4,Off-Peak,5.1,night valley
+5,Off-Peak,5.6,shoulder rise
+6,Mid-Peak,8.4,morning ramp
+7,Mid-Peak,11.2,morning ramp
+8,On-Peak,18.6,weekday peak proxy
+9,On-Peak,21.4,weekday peak proxy
+10,On-Peak,19.8,weekday peak proxy
+11,On-Peak,17.5,weekday peak proxy
+12,Mid-Peak,14.2,midday
+13,Mid-Peak,13.1,midday
+14,Mid-Peak,12.8,midday
+15,Mid-Peak,14.6,afternoon ramp
+16,On-Peak,22.0,AESO-style peak window 16–19
+17,On-Peak,24.5,AESO-style peak window 16–19
+18,On-Peak,23.1,AESO-style peak window 16–19
+19,On-Peak,18.9,AESO-style peak window 16–19
+20,Mid-Peak,12.4,evening shoulder
+21,Mid-Peak,9.8,evening shoulder
+22,Off-Peak,7.2,late evening
+23,Off-Peak,6.1,late evening
